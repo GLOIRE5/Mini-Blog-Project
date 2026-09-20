@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import type { BlogPost } from '../types/post'
 import { getPreview } from '../utils/getPreview'
 import { isNewPost } from '../utils/isNewPost'
@@ -40,4 +41,5 @@ function Post({ post }: PostProps) {
   )
 }
 
-export default Post
+// memo: skip re-rendering a Post when its `post` prop hasn't changed
+export default memo(Post)
