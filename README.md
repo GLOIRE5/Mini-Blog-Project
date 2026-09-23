@@ -1,6 +1,6 @@
 # Dev Insights - Mini Blog
 
-A small internal blog platform for the fictional startup **Dev Insights**, where employees can share quick web development tips. Built with **React**, **TypeScript** and **Vite** as a formative assessment.
+A small internal blog platform for the fictional startup Dev Insights, where employees can share quick web development tips. Built with React, TypeScript and Vite as a formative assessment.
 
 ## Getting Started
 
@@ -45,24 +45,24 @@ The project has no automated test suite. It is checked in two ways:
 
 ### Component types: functional components
 
-All components are **functional components**. `Header`, `PostList` and `Post` only receive props and return UI. They have no internal state and need no lifecycle methods, so a class component would only add boilerplate (`extends Component`, `render()`, `this.props`). Functional components are also the modern React standard, and they work directly with `React.memo` and hooks such as `useEffect`, which the `withLogger` HOC relies on.
+All components are functional components. `Header`, `PostList` and `Post` only receive props and return UI. They have no internal state and need no lifecycle methods, so a class component would only add boilerplate (`extends Component`, `render()`, `this.props`). Functional components are also the modern React standard, and they work directly with `React.memo` and hooks such as `useEffect`, which the `withLogger` HOC relies on.
 
 ### Styling methods
 
 Two methods are used:
 
-- **External CSS files** (`src/styles/`) for the reusable base look: global styles, the header, and the post cards. Class names follow a BEM-style pattern (for example `post__title`).
-- **Inline styles** for the dynamic highlight of a post, because that value depends on data computed inside the component.
+- External CSS files (`src/styles/`) for the reusable base look: global styles, the header, and the post cards. Class names follow a BEM-style pattern (for example `post__title`).
+- Inline styles for the dynamic highlight of a post, because that value depends on data computed inside the component.
 
-**Conditional styling** appears in two places:
+Conditional styling appears in two places:
 
 - Posts by a specific author get a different background colour and border (inline style).
 - Posts published within the last 24 hours show a "New!" badge (conditional rendering with `&&`).
 
 ### Optimization strategies
 
-- **`React.memo`** wraps the `Post` component so it only re-renders when its `post` prop changes. Nothing in the app changes state yet, so the effect is not visible today, but it prevents wasted renders once a parent such as `PostList` re-renders (for example after adding a form or filter).
-- **Unique `key` props**: each post in the list uses `key={post.id}`, giving React a stable identity per item. The `id` is used instead of the array index because an index changes if the list is reordered.
+- `React.memo` wraps the `Post` component so it only re-renders when its `post` prop changes. Nothing in the app changes state yet, so the effect is not visible today, but it prevents wasted renders once a parent such as `PostList` re-renders (for example after adding a form or filter).
+- Unique `key` props: each post in the list uses `key={post.id}`, giving React a stable identity per item. The `id` is used instead of the array index because an index changes if the list is reordered.
 
 ### Higher-order component: `withLogger`
 
